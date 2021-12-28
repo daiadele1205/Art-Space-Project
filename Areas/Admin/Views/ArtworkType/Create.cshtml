@@ -1,0 +1,89 @@
+﻿@model Art.Models.ViewModels.ArtworkTypeAndMediumViewModel
+@using Art.Extensions
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Create Artwork Type</h2>
+<br />
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<div class="border backgroundWhite row">
+    <div class="col-8 border-right">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="ArtworkType.MediumId" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <select id="ddlMediumlist" asp-for="ArtworkType.MediumId" asp-items="Model.MediumList.ToSelectListItem(Model.ArtworkType.MediumId)" class="form-control"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="ArtworkType.Name" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="ArtworkType.Name" class="form-control" />
+                </div>
+                <span asp-validation-for="ArtworkType.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-3">
+                    <partial name="_CreateAndBackToListButton" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-3 offset-1">
+        @if (Model.ArtworkTypeList.Count() > 0)
+        {
+            <p> Existing Artwork Types: </p>
+
+            <div id="ArtworkTypeList">
+                <ul class="list-group"></ul>
+            </div>
+        }
+    </div>
+
+
+
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        function updateArtworkTypeList() {
+            var mediumSelected = document.getElementById("ddlMediumlist").value;
+            $list = $('#ArtworkTypeList');
+            $.ajax({
+                url: '/Admin/ArtworkType/GetArtworkType/' + mediumSelected,
+                type: 'GET',
+                dataType: 'text',
+                success: function (data) {
+                    results = JSON.parse(data);
+                    $list.html('');
+                    $list.append(' <ul class="list-group"> ');
+                    for (i in results) {
+                        $list.append('<li class="list-group-item">' + results[i].text + '</li>');
+                    }
+                    $list.append('</ul>');
+                }
+            });
+        }
+        $(document).ready(function () {
+            updateArtworkTypeList();
+        });
+        $("#ddlMediumlist").on("change", function () {
+            updateArtworkTypeList();
+        });
+    </script>
+
+
+}

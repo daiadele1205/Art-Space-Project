@@ -1,0 +1,112 @@
+﻿@model Art.Models.ShoppingCart
+@using Art.Extensions
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">ArtworkPortfolio Details</h2>
+<br />
+
+<form method="post">
+    <div class="border backgroundWhite row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 pd-4 d-md-none">
+            <img src="@Model.ArtworkPortfolio.Image" width="100%" style="border-radius:5px;border: 1px solid #bbb9b9;" />
+        </div>
+
+
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Name" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Name" readonly class="form-control" />
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Description" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <div class="border p-2">
+                        @Html.Raw(Model.ArtworkPortfolio.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Price" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Price" readonly class="form-control" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Medium.Id" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Medium.Name" readonly class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.ArtworkTypeId" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.ArtworkType.Name" readonly class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Size" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Size" readonly class="form-control" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Count" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Count" readonly class="form-control" />
+                    <span asp-validation-for="Count" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                    <a asp-action="Index" class="btn btn-success form-control">Back To List</a>
+                </div>
+                <div class="col-4">
+                    <button type="submit" value="Add to Cart" class="btn btn-primary form-control">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 offset-1 d-none d-md-block">
+            <img src="@Model.ArtworkPortfolio.Image" width="100%" style="border-radius:5px;border: 1px solid #bbb9b9;" />
+        </div>
+
+
+
+    </div>
+    <input asp-for="ArtworkPortfolioId" hidden />
+</form>

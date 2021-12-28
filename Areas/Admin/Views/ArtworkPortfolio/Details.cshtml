@@ -1,0 +1,106 @@
+﻿@model Art.Models.ViewModels.ArtworkPortfolioViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<br />
+<h2 class="text-info">Details Artwork Portfolio</h2>
+<br />
+<div class="backgroundWhiteBorder row">
+    <div class="col-8">
+        <fieldset disabled>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Name" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Description" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    @Html.TextAreaFor(m => m.ArtworkPortfolio.Description)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Artist" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Artist" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.MediumId" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Medium.Name" class="form-control" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.ArtworkType" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.ArtworkType.Name" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Size" class="custom-label">Size (W x H x D) in inches</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Size" class="form-control" />
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Price" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Price" class="form-control" />
+                </div>
+            </div>
+
+
+        </fieldset>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-3">
+        <img src="@Model.ArtworkPortfolio.Image" width="100%" style="border-radius:5px;border:1px solid #bbb9b9;" />
+    </div>
+    <div class="col-8">
+        <div class="col-8 offset-4">
+            <partial name="_DetailsAndBackToListButton" model="Model.ArtworkPortfolio.Id" />
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+
+    <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: "lists",
+                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist",
+                menubar: 'file edit format',
+                readonly: 1
+            });</script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+
+}
