@@ -277,5 +277,7 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+
     }
 }
