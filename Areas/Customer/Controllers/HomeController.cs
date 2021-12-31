@@ -73,7 +73,7 @@ namespace Art.Controllers
             }
         }
 
-        [Authorize]
+        
         public async Task<IActionResult> Details(int id)
         {
             var artworkPortfolioFromDb = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).Where(m => m.Id == id).FirstOrDefaultAsync();
