@@ -37,6 +37,8 @@ namespace Art.Data
 
             }
 
+            //await _roleManager.CreateAsync(new IdentityRole(SD.WarehouseUser));
+
             if (_db.Roles.Any(r => r.Name == SD.ManagerUser)) return;
 
             _roleManager.CreateAsync(new IdentityRole(SD.ManagerUser)).GetAwaiter().GetResult();

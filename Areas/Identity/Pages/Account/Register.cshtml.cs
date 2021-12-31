@@ -110,23 +110,23 @@ namespace Art.Areas.Identity.Pages.Account
 
 
 
-                    //if (!await _roleManager.RoleExistsAsync(SD.CustomerEndUser))
-                    //{
-                    //    await _roleManager.CreateAsync(new IdentityRole(SD.CustomerEndUser));
-                    //}
+                    if (!await _roleManager.RoleExistsAsync(SD.CustomerEndUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.CustomerEndUser));
+                    }
 
-                    //if (!await _roleManager.RoleExistsAsync(SD.ManagerUser))
-                    //{
-                    //    await _roleManager.CreateAsync(new IdentityRole(SD.ManagerUser));
-                    //}
-                    //if (!await _roleManager.RoleExistsAsync(SD.WarehouseUser))
-                    //{
-                    //    await _roleManager.CreateAsync(new IdentityRole(SD.WarehouseUser));
-                    //}
-                    //if (!await _roleManager.RoleExistsAsync(SD.ArtistUser))
-                    //{
-                    //    await _roleManager.CreateAsync(new IdentityRole(SD.ArtistUser));
-                    //}
+                    if (!await _roleManager.RoleExistsAsync(SD.ManagerUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.ManagerUser));
+                    }
+                    if (!await _roleManager.RoleExistsAsync(SD.WarehouseUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.WarehouseUser));
+                    }
+                    if (!await _roleManager.RoleExistsAsync(SD.ArtistUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.ArtistUser));
+                    }
 
                     //await _userManager.AddToRoleAsync(user, SD.ManagerUser);
                     //await _signInManager.SignInAsync(user, isPersistent: false);
