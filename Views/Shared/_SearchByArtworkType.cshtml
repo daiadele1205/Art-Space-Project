@@ -6,13 +6,13 @@
 @if (Model.Count() > 0)
 {
     <div class="col-12 post @Model.FirstOrDefault().Name.Replace(" ",string.Empty) menu-restaurant">
-       
+
 
         @foreach (var item in Model)
         {
-                <div class="row">
-                        <img class='resize_fit_center' style="height: 460px; width: 100%; object-fit: cover !important;" src="@item.Image" />
-                </div>
+            <div class="row">
+                <img class='resize_fit_center' style="height: 260px; width: 100%; object-fit: cover !important;" src="@item.Image" />
+            </div>
         }
         <div class="p-4"></div>
     </div>

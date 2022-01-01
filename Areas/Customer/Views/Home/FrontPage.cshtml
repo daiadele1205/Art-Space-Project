@@ -21,9 +21,9 @@
                     @if (work.Id == 1)
                     {
                         <h1>@work.Name</h1>
-                    
-                        }
+
                     }
+                }
             </div>
         </div>
         <div class="carousel-item">
@@ -63,46 +63,57 @@
     </a>
 </div>
 
-<div class="backgroundWhite container">
+<br />
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-success ">View All Works</a>
+</div>
 
 
-
-    @foreach (var medium in Model.ArtworkType)
+<br />
+<br />
+<h1>Browse By Artwork Type</h1>
+<br />
+<div class="card-columns" align="center">
+    @foreach (var ArtworkType in Model.ArtworkType)
     {
-        <div class="row" id="menu-wrapper">
-            <partial name="_ThumbnailAreaPartial" model="@Model.ArtworkPortfolio.Where(u=>u.Medium.Name.Equals(medium.Name))" />
+
+        <div class="card" style="width: 18rem;">
+            <partial name="_SearchByArtworkType" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(2))" />
+            <div class="card-body">
+                <h5 class="card-title">@ArtworkType.Name</h5>
+            </div>
         </div>
     }
 </div>
 
 
-@section Scripts{
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
+    @section Scripts{
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
 
-    <script>
+        <script>
 
-    var posts = $('.post');
+            var posts = $('.post');
 
-    (function ($) {
+            (function ($) {
 
-        $("#menu-filters li").click(function () {
-            $("#menu-filters li").removeClass('active btn btn-secondary');
-            $(this).addClass('active btn btn-secondary');
+                $("#menu-filters li").click(function () {
+                    $("#menu-filters li").removeClass('active btn btn-secondary');
+                    $(this).addClass('active btn btn-secondary');
 
-            var selectedFilter = $(this).data("filter");
+                    var selectedFilter = $(this).data("filter");
 
-            $(".menu-restaurant").fadeOut();
+                    $(".menu-restaurant").fadeOut();
 
-            setTimeout(function () {
-                $(selectedFilter).slideDown();
-            }, 300);
-        });
+                    setTimeout(function () {
+                        $(selectedFilter).slideDown();
+                    }, 300);
+                });
 
 
 
-    })(jQuery);
+            })(jQuery);
 
-    </script>
-}
+        </script>
+    }
