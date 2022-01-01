@@ -4,6 +4,7 @@ using Art.Models.ViewModels;
 using Art.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 namespace ArtSpace_Project.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.ManagerUser)]
+    [Authorize(Roles = SD.ManagerUser + "," + SD.ArtistUser)]
     public class ArtworkPortfolioController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -28,6 +29,7 @@ namespace ArtSpace_Project.Areas.Admin.Controllers
         {
             _db = db;
             _hostingEnvironment = hostingEnvironment;
+            
 
             ArtworkPortfolioVM = new ArtworkPortfolioViewModel()
             {
@@ -174,7 +176,7 @@ namespace ArtSpace_Project.Areas.Admin.Controllers
             artworkPortfolioFromDb.ArtworkTypeId = ArtworkPortfolioVM.ArtworkPortfolio.ArtworkTypeId;
 
 
-            artworkPortfolioFromDb.Size = ArtworkPortfolioVM.ArtworkPortfolio.Size;
+            artworkPortfolioFromDb.Email = ArtworkPortfolioVM.ArtworkPortfolio.Email;
             artworkPortfolioFromDb.Price = ArtworkPortfolioVM.ArtworkPortfolio.Price;
 
             await _db.SaveChangesAsync();

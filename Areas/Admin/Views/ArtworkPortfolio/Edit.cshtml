@@ -49,6 +49,16 @@
 
             <div class="form-group row">
                 <div class="col-4">
+                    <label asp-for="ArtworkPortfolio.Email" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ArtworkPortfolio.Email" class="form-control" />
+                </div>
+                <span asp-validation-for="ArtworkPortfolio.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
                     <label asp-for="ArtworkPortfolio.MediumId" class="col-form-label"></label>
                 </div>
                 <div class="col-8">
@@ -66,18 +76,6 @@
                 </div>
             </div>
 
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="ArtworkPortfolio.Size" class="col-form-label">Size (W x H x D) in inches</label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="ArtworkPortfolio.Size" class="form-control" />
-                </div>
-            </div>
-
-
-
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="ArtworkPortfolio.Price" class="col-form-label"></label>
@@ -87,7 +85,6 @@
                 </div>
                 <span asp-validation-for="ArtworkPortfolio.Price" class="text-danger"></span>
             </div>
-
 
 
             <div class="form-group row">

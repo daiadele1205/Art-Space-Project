@@ -48,7 +48,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
 
-                        @if (User.IsInRole(SD.ManagerUser))
+                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.ArtistUser))
                         {
                             <li class="nav-item dropdown text-white-50">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,7 +64,6 @@
                                 </div>
                             </li>
                         }
-
 
                         <li class="nav-item dropdown text-white-50">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,14 +83,14 @@
                             </li>
                         }
 
-                        @if (User.IsInRole(SD.WarehouseUser) || User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.ManagerUser))
+                        @if (User.IsInRole(SD.WarehouseUser) || User.IsInRole(SD.ManagerUser))
                         {
                             <li class="nav-item dropdown text-white-50">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Order
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                    @if (User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.ManagerUser))
+                                    @if (User.IsInRole(SD.ManagerUser))
                                     {
                                         <a class="dropdown-item" asp-action="ManageOrder" asp-controller="Order" asp-area="Customer">Manage Order</a>
                                     }
