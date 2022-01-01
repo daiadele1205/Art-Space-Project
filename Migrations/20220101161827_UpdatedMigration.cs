@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Art.Migrations
 {
-    public partial class Initial : Migration
+    public partial class UpdatedMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -127,7 +127,7 @@ namespace Art.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -148,7 +148,7 @@ namespace Art.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -168,7 +168,7 @@ namespace Art.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -186,13 +186,13 @@ namespace Art.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -212,7 +212,7 @@ namespace Art.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -243,7 +243,7 @@ namespace Art.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -278,9 +278,8 @@ namespace Art.Migrations
                     Image = table.Column<string>(nullable: true),
                     MediumId = table.Column<int>(nullable: false),
                     ArtworkTypeId = table.Column<int>(nullable: false),
-                    Size = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
-                    Email = table.Column<string>(nullable: false)
+                    Email = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -290,13 +289,13 @@ namespace Art.Migrations
                         column: x => x.ArtworkTypeId,
                         principalTable: "ArtworkType",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ArtworkPortfolio_Medium_MediumId",
                         column: x => x.MediumId,
                         principalTable: "Medium",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -320,13 +319,13 @@ namespace Art.Migrations
                         column: x => x.ArtworkPortfolioId,
                         principalTable: "ArtworkPortfolio",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderDetails_OrderHeader_OrderId",
                         column: x => x.OrderId,
                         principalTable: "OrderHeader",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

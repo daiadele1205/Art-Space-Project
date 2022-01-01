@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Art.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211231052102_Initial")]
-    partial class Initial
+    [Migration("20220101161827_UpdatedMigration")]
+    partial class UpdatedMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,6 @@ namespace Art.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
@@ -53,9 +52,6 @@ namespace Art.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
