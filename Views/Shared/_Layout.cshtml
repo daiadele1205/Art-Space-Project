@@ -58,9 +58,27 @@
                                     <a class="dropdown-item" asp-action="Index" asp-controller="Medium" asp-area="Admin">Artwork Medium</a>
                                     <a class="dropdown-item" asp-action="Index" asp-controller="ArtworkType" asp-area="Admin">Artwork Type</a>
                                     <a class="dropdown-item" asp-action="Index" asp-controller="ArtworkPortfolio" asp-area="Admin">Artwork Portfolio</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="Coupon" asp-area="Admin">Coupons</a>
                                     <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Admin">Users</a>
 
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole(SD.CustomerEndUser))
+                        {
+                            <li class="nav-item dropdown text-white-50">
+
+                            </li>
+                        }
+
+                        @if (User.IsInRole(SD.ArtistUser))
+                        {
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Artwork Management
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">                            
+                                    <a class="dropdown-item" asp-action="Index" asp-controller="ArtworkPortfolio" asp-area="Admin">Artwork Portfolio</a>
                                 </div>
                             </li>
                         }
