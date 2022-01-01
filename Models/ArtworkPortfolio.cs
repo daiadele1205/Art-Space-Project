@@ -31,10 +31,11 @@ namespace Art.Models
         [ForeignKey("ArtworkTypeId")]
         public virtual ArtworkType ArtworkType { get; set; }
 
-        public string Size { get; set; }
+        public string Email { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = " Price should be greater than ${1}")]
         public double Price { get; set; }
 
+      
     }
 }

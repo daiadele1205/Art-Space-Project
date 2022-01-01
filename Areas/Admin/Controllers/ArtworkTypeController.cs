@@ -16,7 +16,7 @@ namespace ArtSpace_Project.Areas.Admin.Controllers
 
     [Area("Admin")]
 
-    [Authorize(Roles = SD.ManagerUser)]
+    [Authorize(Roles = SD.ManagerUser + "," + SD.ArtistUser)]
     public class ArtworkTypeController : Controller
     {
         private readonly ApplicationDbContext _db;
