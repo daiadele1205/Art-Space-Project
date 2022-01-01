@@ -20,10 +20,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="SendGrid" Version="9.10.0" />
-    <PackageReference Include="Stripe.net" Version="21.7.0" />
+    <PackageReference Include="Stripe.net" Version="39.84.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

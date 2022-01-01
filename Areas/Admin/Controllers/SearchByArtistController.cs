@@ -10,7 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ArtSpace_Project.Areas.Admin.Controllers
+namespace Art.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class SearchByArtistController : Controller

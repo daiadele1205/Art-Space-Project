@@ -182,7 +182,6 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
                 Currency = "usd",
                 Description = "Order ID : " + DetailCart.OrderHeader.Id,
                 Source = stripeToken
-                //SourceId = stripeToken
 
             };
             var service = new ChargeService();

@@ -96,7 +96,8 @@ namespace Art.Areas.Customer.Controllers
             return View(orderListVM);
         }
 
-        [Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> ManageOrder(int productPage = 1)
         {
 
@@ -136,7 +137,8 @@ namespace Art.Areas.Customer.Controllers
 
 
 
-        [Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> OrderPrepare(int OrderId)
         {
             OrderHeader orderHeader = await _db.OrderHeader.FindAsync(OrderId);
@@ -146,7 +148,8 @@ namespace Art.Areas.Customer.Controllers
         }
 
 
-        [Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> OrderReady(int OrderId)
         {
             OrderHeader orderHeader = await _db.OrderHeader.FindAsync(OrderId);
@@ -161,7 +164,8 @@ namespace Art.Areas.Customer.Controllers
         }
 
 
-        [Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
+        [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> OrderCancel(int OrderId)
         {
             OrderHeader orderHeader = await _db.OrderHeader.FindAsync(OrderId);
@@ -267,7 +271,8 @@ namespace Art.Areas.Customer.Controllers
             return View(orderListVM);
         }
 
-        [Authorize(Roles = SD.WarehouseUser + "," + SD.ManagerUser)]
+        //[Authorize(Roles = SD.WarehouseUser + "," + SD.ManagerUser)]
+        [Authorize(Roles = SD.ManagerUser)]
         [HttpPost]
         [ActionName("OrderDelivery")]
         public async Task<IActionResult> OrderDeliveryPost(int orderId)

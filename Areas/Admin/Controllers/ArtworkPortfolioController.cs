@@ -4,6 +4,7 @@ using Art.Models.ViewModels;
 using Art.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,10 +13,11 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ArtSpace_Project.Areas.Admin.Controllers
+namespace Art.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.ManagerUser)]
+    //[Authorize(Roles = SD.ManagerUser + "," + SD.ArtistUser)]
     public class ArtworkPortfolioController : Controller
     {
         private readonly ApplicationDbContext _db;
