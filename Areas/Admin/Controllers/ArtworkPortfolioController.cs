@@ -13,7 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ArtSpace_Project.Areas.Admin.Controllers
+namespace Art.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.ManagerUser + "," + SD.ArtistUser)]
