@@ -161,7 +161,7 @@
                 minDt = 1;
             }
             $("#datepicker").datepicker({ minDate: minDt, maxDate: "+1W" });
-            $("#timepicker").timepicker({ 'minTime': '9:00 AM', 'maxTime': '5:00 PM', step: '30' })
+            /*$("#timepicker").timepicker({ 'minTime': '9:00 AM', 'maxTime': '5:00 PM', step: '30' })*/
         });
         function setDeliveryTime() {
             var dateSelected = document.getElementById("datepicker").value;
@@ -174,29 +174,29 @@
             else {
                 selectedTime = getTimeFromCurrentDate();
             }
-            $('#timepicker').timepicker('option', 'minTime', selectedTime);
-        }
-        function getTimeFromCurrentDate() {
-            var curDt = new Date();
-            var minTime = "";
-            if (curDt.getHours() < 11) {
-                minTime = '12:00pm';
-            }
-            else {
-                if (curDt.getMinutes() < 30) {
-                    minTime = (curDt.getHours() + 1).toString() + ':30pm'
-                }
-                else {
-                    minTime = (curDt.getHours() + 2).toString() + ':00pm'
-                }
-            }
-            return minTime;
-        }
+        //    $('#timepicker').timepicker('option', 'minTime', selectedTime);
+        //}
+        //function getTimeFromCurrentDate() {
+        //    var curDt = new Date();
+        //    var minTime = "";
+        //    if (curDt.getHours() < 11) {
+        //        minTime = '12:00pm';
+        //    }
+        //    else {
+        //        if (curDt.getMinutes() < 30) {
+        //            minTime = (curDt.getHours() + 1).toString() + ':30pm'
+        //        }
+        //        else {
+        //            minTime = (curDt.getHours() + 2).toString() + ':00pm'
+        //        }
+        //    }
+        //    return minTime;
+        //}
         $('#datepicker').change(function () {
             setDeliveryTime();
         });
         function validateInput() {
-            var time = document.getElementById("timepicker").value;
+            /*var time = document.getElementById("timepicker").value;*/
             var dt = document.getElementById("datepicker").value;
             var name = document.getElementById("txtName").value;
             var phone = document.getElementById("txtPhone").value;
