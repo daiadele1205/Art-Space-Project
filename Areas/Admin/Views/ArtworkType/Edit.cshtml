@@ -36,12 +36,15 @@
                 </div>
                 <span asp-validation-for="ArtworkType.Name" class="text-danger"></span>
             </div>
+           
             <div class="form-group row">
                 <div class="col-5 offset-3">
                     <partial name="_EditAndBackToListButton" model="Model.ArtworkType.Id" />
                 </div>
             </div>
+
         </form>
+
     </div>
     <div class="col-3 offset-1">
         @if (Model.ArtworkTypeList.Count() > 0)
@@ -54,9 +57,12 @@
         }
     </div>
 
-
-
 </div>
+
+    
+
+
+
 
 @section Scripts{
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}

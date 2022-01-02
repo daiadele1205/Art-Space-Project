@@ -5,7 +5,7 @@
 
 <br />
 <br />
-<h1>Featured Works</h1>
+<h1 style="text-align:center">Featured Works</h1>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -14,43 +14,49 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <partial name="_FeaturedWorksCarousel" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(1))" />
-            <div class="carousel-caption d-none d-md-block">
-                @foreach (var work in Model.ArtworkPortfolio)
-                {
-                    @if (work.Id == 1)
-                    {
-                        <h1>@work.Name</h1>
+            <a href="/Customer/Home/Details/1">
+                <partial name="_FeaturedWorksCarousel" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(1))">
+                    <div class="carousel-caption d-none d-md-block">
+                        @foreach (var work in Model.ArtworkPortfolio)
+                        {
+                            @if (work.Id == 1)
+                            {
+                                <h1>@work.Name</h1>
 
+                            }
+                        }
+                    </div>
+                    </a>
+</div>
+        <div class="carousel-item">
+            <a href="/Customer/Home/Details/2">
+                <partial name="_FeaturedWorksCarousel" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(2))" />
+                <div class="carousel-caption d-none d-md-block">
+                    @foreach (var work in Model.ArtworkPortfolio)
+                    {
+                        @if (work.Id == 2)
+                        {
+                            <h1>@work.Name</h1>
+
+                        }
                     }
-                }
-            </div>
+                </div>
+                </a>
         </div>
         <div class="carousel-item">
-            <partial name="_FeaturedWorksCarousel" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(2))" />
-            <div class="carousel-caption d-none d-md-block">
-                @foreach (var work in Model.ArtworkPortfolio)
-                {
-                    @if (work.Id == 2)
+            <a href="/Customer/Home/Details/3">
+                <partial name="_FeaturedWorksCarousel" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(3))" />
+                <div class="carousel-caption d-none d-md-block">
+                    @foreach (var work in Model.ArtworkPortfolio)
                     {
-                        <h1>@work.Name</h1>
+                        @if (work.Id == 3)
+                        {
+                            <h1>@work.Name</h1>
 
+                        }
                     }
-                }
-            </div>
-        </div>
-        <div class="carousel-item">
-            <partial name="_FeaturedWorksCarousel" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(3))" />
-            <div class="carousel-caption d-none d-md-block">
-                @foreach (var work in Model.ArtworkPortfolio)
-                {
-                    @if (work.Id == 3)
-                    {
-                        <h1>@work.Name</h1>
-
-                    }
-                }
-            </div>
+                </div>
+                </a>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -71,49 +77,46 @@
 
 <br />
 <br />
-<h1>Browse By Artwork Type</h1>
+<h1 style="text-align:center">Browse By Artwork Type</h1>
 <br />
 <div class="card-columns" align="center">
     @foreach (var ArtworkType in Model.ArtworkType)
     {
-
-        <div class="card" style="width: 18rem;">
-            <partial name="_SearchByArtworkType" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(2))" />
-            <div class="card-body">
-                <h5 class="card-title">@ArtworkType.Name</h5>
-            </div>
+        <div class="card-body">
+            <a href="/Customer/Home/Index">
+            <h5 class="card-title">@ArtworkType.Name</h5>
         </div>
     }
-</div>
+ </div>
 
 
-    @section Scripts{
-        <script src="https://code.jquery.com/jquery-3.3.1.js"
-                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                crossorigin="anonymous"></script>
+        @section Scripts{
+            <script src="https://code.jquery.com/jquery-3.3.1.js"
+                    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                    crossorigin="anonymous"></script>
 
-        <script>
+            <script>
 
-            var posts = $('.post');
+                var posts = $('.post');
 
-            (function ($) {
+                (function ($) {
 
-                $("#menu-filters li").click(function () {
-                    $("#menu-filters li").removeClass('active btn btn-secondary');
-                    $(this).addClass('active btn btn-secondary');
+                    $("#menu-filters li").click(function () {
+                        $("#menu-filters li").removeClass('active btn btn-secondary');
+                        $(this).addClass('active btn btn-secondary');
 
-                    var selectedFilter = $(this).data("filter");
+                        var selectedFilter = $(this).data("filter");
 
-                    $(".menu-restaurant").fadeOut();
+                        $(".menu-restaurant").fadeOut();
 
-                    setTimeout(function () {
-                        $(selectedFilter).slideDown();
-                    }, 300);
-                });
+                        setTimeout(function () {
+                            $(selectedFilter).slideDown();
+                        }, 300);
+                    });
 
 
 
-            })(jQuery);
+                })(jQuery);
 
-        </script>
-    }
+            </script>
+        }
