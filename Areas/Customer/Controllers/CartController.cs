@@ -61,12 +61,12 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
             }
             DetailCart.OrderHeader.OrderTotalOriginal = DetailCart.OrderHeader.OrderTotal;
 
-            if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
-            {
-                DetailCart.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
-                var couponFromDb = await _db.Coupon.Where(c => c.Name.ToLower() == DetailCart.OrderHeader.CouponCode.ToLower()).FirstOrDefaultAsync();
-                DetailCart.OrderHeader.OrderTotal = SD.DiscountedPrice(couponFromDb, DetailCart.OrderHeader.OrderTotalOriginal);
-            }
+            //if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
+            //{
+            //    DetailCart.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
+            //    var couponFromDb = await _db.Coupon.Where(c => c.Name.ToLower() == DetailCart.OrderHeader.CouponCode.ToLower()).FirstOrDefaultAsync();
+            //    DetailCart.OrderHeader.OrderTotal = SD.DiscountedPrice(couponFromDb, DetailCart.OrderHeader.OrderTotalOriginal);
+            //}
 
 
             return View(DetailCart);
@@ -106,12 +106,12 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
             DetailCart.OrderHeader.DeliveryTime = DateTime.Now;
 
 
-            if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
-            {
-                DetailCart.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
-                var couponFromDb = await _db.Coupon.Where(c => c.Name.ToLower() == DetailCart.OrderHeader.CouponCode.ToLower()).FirstOrDefaultAsync();
-                DetailCart.OrderHeader.OrderTotal = SD.DiscountedPrice(couponFromDb, DetailCart.OrderHeader.OrderTotalOriginal);
-            }
+            //if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
+            //{
+            //    DetailCart.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
+            //    var couponFromDb = await _db.Coupon.Where(c => c.Name.ToLower() == DetailCart.OrderHeader.CouponCode.ToLower()).FirstOrDefaultAsync();
+            //    DetailCart.OrderHeader.OrderTotal = SD.DiscountedPrice(couponFromDb, DetailCart.OrderHeader.OrderTotalOriginal);
+            //}
 
 
             return View(DetailCart);
@@ -214,24 +214,24 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
         }
 
 
-        public IActionResult AddCoupon()
-        {
-            if (DetailCart.OrderHeader.CouponCode == null)
-            {
-                DetailCart.OrderHeader.CouponCode = "";
-            }
-            HttpContext.Session.SetString(SD.ssCouponCode, DetailCart.OrderHeader.CouponCode);
+        //public IActionResult AddCoupon()
+        //{
+        //    if (DetailCart.OrderHeader.CouponCode == null)
+        //    {
+        //        DetailCart.OrderHeader.CouponCode = "";
+        //    }
+        //    HttpContext.Session.SetString(SD.ssCouponCode, DetailCart.OrderHeader.CouponCode);
 
-            return RedirectToAction(nameof(Index));
-        }
+        //    return RedirectToAction(nameof(Index));
+        //}
 
-        public IActionResult RemoveCoupon()
-        {
+        //public IActionResult RemoveCoupon()
+        //{
 
-            HttpContext.Session.SetString(SD.ssCouponCode, string.Empty);
+        //    HttpContext.Session.SetString(SD.ssCouponCode, string.Empty);
 
-            return RedirectToAction(nameof(Index));
-        }
+        //    return RedirectToAction(nameof(Index));
+        //}
 
 
         public async Task<IActionResult> Plus(int cartId)

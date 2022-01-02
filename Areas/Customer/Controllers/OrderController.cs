@@ -48,11 +48,11 @@ namespace Art.Areas.Customer.Controllers
             return View();
         }
 
-        public IActionResult GetOrderStatus(int Id)
-        {
-            return PartialView("_OrderStatus", _db.OrderHeader.Where(m => m.Id == Id).FirstOrDefault().Status);
+        //public IActionResult GetOrderStatus(int Id)
+        //{
+        //    return PartialView("_OrderStatus", _db.OrderHeader.Where(m => m.Id == Id).FirstOrDefault().Status);
 
-        }
+        //}
 
         [Authorize]
         public async Task<IActionResult> OrderHistory(int productPage = 1)
