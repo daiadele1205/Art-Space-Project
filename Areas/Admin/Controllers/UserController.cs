@@ -9,7 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ArtSpace_Project.Areas.Admin
+namespace Art.Areas.Admin
 {
     [Area("Admin")]
     [Authorize(Roles = SD.ManagerUser)]
