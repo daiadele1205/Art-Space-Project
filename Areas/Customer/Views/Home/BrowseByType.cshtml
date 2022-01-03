@@ -11,18 +11,17 @@
     <ul id="menu-filters" class="menu-filter-list list-inline text-center">
         <li class="filter active btn btn-secondary ml-1 mr-1" data-filter=".menu-restaurant">Show All</li>
 
-        @foreach (var item in Model.Medium)
+        @foreach (var item in Model.ArtworkType)
         {
             <li class="filter ml-1 mr-1" data-filter=".@item.Name.Replace(" ",string.Empty)">@item.Name</li>
         }
     </ul>
 
-
-    @foreach (var medium in Model.Medium)
+    @foreach (var type in Model.ArtworkType)
     {
-        <div class="row" id="menu-wrapper">
-            <partial name="_ThumbnailAreaPartial" model="@Model.ArtworkPortfolio.Where(u=>u.Medium.Name.Equals(medium.Name))" />
-        </div>
+<div class="row" id="menu-wrapper">
+    <partial name="_BrowseByTypePartial" model="@Model.ArtworkPortfolio.Where(u=>u.ArtworkType.Id.Equals(type.Id))" />
+</div>
     }
 </div>
 

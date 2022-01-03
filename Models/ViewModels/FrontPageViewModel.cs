@@ -10,6 +10,7 @@ namespace Art.Models.ViewModels
         public IEnumerable<ArtworkPortfolio> ArtworkPortfolio { get; set; }
         public IEnumerable<ArtworkType> ArtworkType { get; set; }
         public IEnumerable<SearchByArtist> SearchByArtist { get; set; }
+        public IEnumerable<Medium> Medium { get; set; }
 
 
 
