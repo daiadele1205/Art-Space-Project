@@ -79,13 +79,26 @@
 <br />
 <h1 style="text-align:center">Browse By Artwork Type</h1>
 <br />
-<div class="card-columns" align="center">
-    @foreach (var ArtworkType in Model.ArtworkType)
+<div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+
+    @foreach (var medium in Model.Medium)
     {
-        <div class="card-body">
-            <a href="/Customer/Home/Index">
-                <h5 class="card-title">@ArtworkType.Name</h5>
-        </div>
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">@medium.Name</div>
+        @foreach (var artworkType in Model.ArtworkType)
+        {
+            @if (artworkType.Medium.Id == medium.Id)
+            {
+            <a class="text-white" asp-area="Customer" asp-controller="Home" asp-action="BrowseByType">
+                <div class="card-body">
+                    <h5 class="card-title">@artworkType.Name</h5>
+                </div>
+            </a>
+                }
+            }
+    </div>
+
     }
 </div>
 

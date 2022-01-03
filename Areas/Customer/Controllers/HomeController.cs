@@ -31,6 +31,7 @@ namespace Art.Controllers
             {
                 ArtworkPortfolio = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).ToListAsync(),
                 ArtworkType = await _db.ArtworkType.ToListAsync(),
+                Medium = await _db.Medium.ToListAsync(),
             };
 
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -92,7 +93,28 @@ namespace Art.Controllers
             }
         }
 
-        
+        public async Task<IActionResult> BrowseByType(int? id)
+        {
+            IndexViewModel IndexVM = new IndexViewModel()
+            {
+                ArtworkPortfolio = await _db.ArtworkPortfolio.Include(m => m.Medium)
+                            .Where(x => x.ArtworkTypeId == id)
+                            .Include(m => m.ArtworkType).ToListAsync(),
+                ArtworkType = await _db.ArtworkType
+                .ToListAsync()
+            };
+
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (claim != null)
+            {
+                var cnt = _db.ShoppingCart.Where(u => u.ApplicationUserId == claim.Value).ToList().Count;
+                HttpContext.Session.SetInt32(SD.ssShoppingCartCount, cnt);
+            }
+            return View("BrowseByType", IndexVM);
+        }
+
         public async Task<IActionResult> Details(int id)
         {
             var artworkPortfolioFromDb = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).Where(m => m.Id == id).FirstOrDefaultAsync();
