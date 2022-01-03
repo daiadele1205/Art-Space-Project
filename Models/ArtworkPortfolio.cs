@@ -25,7 +25,7 @@ namespace Art.Models
         [ForeignKey("MediumId")]
         public virtual Medium Medium { get; set; }
 
-        [Display(Name = "ArtworkType")]
+        [Display(Name = "Artwork Type")]
         public int ArtworkTypeId { get; set; }
 
         [ForeignKey("ArtworkTypeId")]
