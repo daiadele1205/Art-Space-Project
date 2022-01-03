@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
         <link rel="stylesheet" href="~/css/jquery-ui.css" />
         <link rel="stylesheet" href="~/js/jquery-ui.js" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" />
@@ -35,125 +35,125 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="/images/defaultart.png" />Art Space
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="/images/defaultart.png" />Art Space
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <partial name="_LoginPartial" />
+            <ul class="navbar-nav flex-grow-1">
 
-                        @if (User.IsInRole(SD.ManagerUser))
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Artwork Management
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="Medium" asp-area="Admin">Artwork Medium</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="ArtworkType" asp-area="Admin">Artwork Type</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="ArtworkPortfolio" asp-area="Admin">Artwork Portfolio</a>
-                                    @*<a class="dropdown-item" asp-action="Index" asp-controller="Coupon" asp-area="Admin">Coupons</a>*@
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Admin">Users</a>
+                @if (User.IsInRole(SD.ManagerUser))
+                {
+                    <li class="nav-item dropdown text-white-50">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Artwork Management
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                            <a class="dropdown-item" asp-action="Index" asp-controller="Medium" asp-area="Admin">Artwork Medium</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="ArtworkType" asp-area="Admin">Artwork Type</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="ArtworkPortfolio" asp-area="Admin">Artwork Portfolio</a>
+                            @*<a class="dropdown-item" asp-action="Index" asp-controller="Coupon" asp-area="Admin">Coupons</a>*@
+                            <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Admin">Users</a>
 
-                                </div>
-                            </li>
-                        }
+                        </div>
+                    </li>
+                }
 
-                        @if (User.IsInRole(SD.CustomerEndUser))
-                        {
-                            <li class="nav-item dropdown text-white-50">
+                @if (User.IsInRole(SD.CustomerEndUser))
+                {
+                    <li class="nav-item dropdown text-white-50">
 
-                            </li>
-                        }
+                    </li>
+                }
 
-                        @if (User.IsInRole(SD.ArtistUser))
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Your Artwork Management
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                    <a class="dropdown-item" asp-action="Create" asp-controller="ArtistCreateArtworkPortfolio" asp-area="Admin">
-                                        Create Your Artwork Portfolio
-                                    </a>
-                                </div>
-                            </li>
-                        }
-
-
-
-                        <li class="nav-item dropdown text-white-50">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Search By Artist
+                @if (User.IsInRole(SD.ArtistUser))
+                {
+                    <li class="nav-item dropdown text-white-50">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Your Artwork Management
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                            <a class="dropdown-item" asp-action="Create" asp-controller="ArtistCreateArtworkPortfolio" asp-area="Admin">
+                                Create Your Artwork Portfolio
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                <a class="dropdown-item" asp-action="Index" asp-controller="SearchByArtist" asp-area="Admin">Artist List</a>
-                            </div>
-                        </li>
-
-                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.CustomerEndUser) || User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.WarehouseUser))
-                        {
-                            <li class="nav-item">
-                                <a asp-area="Customer" asp-controller="Order" asp-action="OrderHistory" class="nav-link">
-                                    Order History
-                                </a>
-                            </li>
-                        }
-
-                        @if (User.IsInRole(SD.WarehouseUser) || User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.ManagerUser))
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Order
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                    @if (User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.ManagerUser))
-                                    {
-                                        <a class="dropdown-item" asp-action="ManageOrder" asp-controller="Order" asp-area="Customer">Manage Order</a>
-                                    }
-                                    @if (User.IsInRole(SD.WarehouseUser) || User.IsInRole(SD.ManagerUser))
-                                    {
-                                        <a class="dropdown-item" asp-action="OrderDelivery" asp-controller="Order" asp-area="Customer">Order Delivery</a>
-                                    }
-                                </div>
-
-                            </li>
-                        }
+                        </div>
+                    </li>
+                }
 
 
 
+                <li class="nav-item dropdown text-white-50">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Search By Artist
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                        <a class="dropdown-item" asp-action="Index" asp-controller="SearchByArtist" asp-area="Admin">Artist List</a>
+                    </div>
+                </li>
+
+                @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.CustomerEndUser) || User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.WarehouseUser))
+                {
+                    <li class="nav-item text-white-50">
+                        <a asp-area="Customer" asp-controller="Order" asp-action="OrderHistory" class="nav-link">
+                            Order History
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole(SD.WarehouseUser) || User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.ManagerUser))
+                {
+                    <li class="nav-item dropdown text-white-50">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Order
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                            @if (User.IsInRole(SD.ArtistUser) || User.IsInRole(SD.ManagerUser))
+                            {
+                                <a class="dropdown-item" asp-action="ManageOrder" asp-controller="Order" asp-area="Customer">Manage Order</a>
+                            }
+                            @if (User.IsInRole(SD.WarehouseUser) || User.IsInRole(SD.ManagerUser))
+                            {
+                                <a class="dropdown-item" asp-action="OrderDelivery" asp-controller="Order" asp-area="Customer">Order Delivery</a>
+                            }
+                        </div>
+
+                    </li>
+                }
 
 
-                        @if (IHttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount) != null)
-                        {
-                            <li style="color:white">
-                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
-                                    @{
-                                        var count = IHttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount);
-                                    }
-                                    <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
-                                </a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li style="color:white">
-                                <a href="#" class="nav-link">
-                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
-                                </a>
-                            </li>
-                        }
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
+
+                @if (IHttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount) != null)
+                {
+                    <li style="color:white">
+                        <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
+                            @{
+                                var count = IHttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount);
+                            }
+                            <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li style="color:white">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
