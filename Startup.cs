@@ -102,7 +102,7 @@ namespace Art
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area=Customer}/{controller=Home}/{action=FrontPage}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
