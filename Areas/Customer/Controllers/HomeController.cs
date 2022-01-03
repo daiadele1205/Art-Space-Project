@@ -93,12 +93,12 @@ namespace Art.Controllers
             }
         }
 
-        public async Task<IActionResult> BrowseByType(int? id)
+        public async Task<IActionResult> BrowseByType(int mediumId, int typeId)
         {
             IndexViewModel IndexVM = new IndexViewModel()
             {
                 ArtworkPortfolio = await _db.ArtworkPortfolio.Include(m => m.Medium)
-                            .Where(x => x.ArtworkTypeId == id)
+                            .Where(x => x.ArtworkTypeId == typeId && x.MediumId == mediumId)
                             .Include(m => m.ArtworkType).ToListAsync(),
                 ArtworkType = await _db.ArtworkType
                 .ToListAsync()
