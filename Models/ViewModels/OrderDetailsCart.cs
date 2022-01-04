@@ -9,5 +9,6 @@ namespace Art.Models.ViewModels
     {
         public List<ShoppingCart> ListCart { get; set; }
         public OrderHeader OrderHeader { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

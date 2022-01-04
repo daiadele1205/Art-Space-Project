@@ -53,18 +53,26 @@
                                     </div>
                                     <div class="row my-1">
                                         <div class="col-3">
-                                            <label>Date</label>
+                                            <label>Street Address</label>
                                         </div>
                                         <div class="col-9">
-                                            <input asp-for="@Model.OrderHeader.DeliveryDate" id="datepicker" value="" type="text" class="form-control" />
+                                            <input asp-for="@Model.ApplicationUser.StreetAddress" id="address"  type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
                                         <div class="col-3">
-                                            <label>Time</label>
+                                            <label>City</label>
                                         </div>
                                         <div class="col-9">
-                                            <input asp-for="@Model.OrderHeader.DeliveryTime" id="timepicker" value="" type="text" class="form-control" />
+                                            <input asp-for="@Model.ApplicationUser.City" id="city"  type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row my-1">
+                                        <div class="col-3">
+                                            <label>Postal Code</label>
+                                        </div>
+                                        <div class="col-9">
+                                            <input asp-for="@Model.ApplicationUser.PostalCode" id="postalCode"  type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -152,58 +160,37 @@
 
 @section Scripts{
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
 
     <script>
-        $(function () {
-            var minDt = 0;
-            if (getTimeFromCurrentDate() >= 20) {
-                minDt = 1;
-            }
-            $("#datepicker").datepicker({ minDate: minDt, maxDate: "+1W" });
-        });
-        function setDeliveryTime() {
-            var dateSelected = document.getElementById("datepicker").value;
-            var dt = new Date(dateSelected);
-            var today = new Date();
-            dt.setHours(0, 0, 0, 0);
-            if (dt > today) {
-                selectedTime = '9:00am';
-            }
-            else {
-                selectedTime = getTimeFromCurrentDate();
-            }
-
-            $('#datepicker').change(function () {
-                setDeliveryTime();
-            });
+       
             function validateInput() {
-                var dt = document.getElementById("datepicker").value;
-                var name = document.getElementById("txtName").value;
+                var address = document.getElementById("address").value;
+                var city = document.getElementById("city").value;
                 var phone = document.getElementById("txtPhone").value;
-                if (time.toString() == '') {
-                    alert("Please select delivery time");
-                    return false;
-                }
-                else {
-                    if (dt.toString() == '') {
-                        alert("Please select delivery date");
+                var postalCode = document.getElementById("postalCode").value;
+                
+                    if (address.toString().length == 0) {
+                        alert("Please enter address");
                         return false;
                     }
                     else {
-                        if (name.toString() == '') {
+                        if (city.toString().length == 0) {
                             alert("Please enter delivery name");
                             return false;
                         }
                         else {
-                            if (phone.toString() == '') {
+                            if (phone.toString().length == 0) {
                                 alert("Please enter a phone number");
                                 return false;
                             }
-                            else {
-                                return true;
-                            }
-
+                             else {
+                                if (postalCode.toString().length == 0) {
+                                    alert("Please enter a postal code");
+                                    return false;
+                                }
+                                else {
+                                    return true;
+                                }
                         }
     </script>
 }
