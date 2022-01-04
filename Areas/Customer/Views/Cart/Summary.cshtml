@@ -56,7 +56,7 @@
                                             <label>Street Address</label>
                                         </div>
                                         <div class="col-9">
-                                            <input asp-for="@Model.ApplicationUser.StreetAddress" id="address"  type="text" class="form-control" />
+                                            <input asp-for="@Model.ApplicationUser.StreetAddress" id="address" type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -64,7 +64,15 @@
                                             <label>City</label>
                                         </div>
                                         <div class="col-9">
-                                            <input asp-for="@Model.ApplicationUser.City" id="city"  type="text" class="form-control" />
+                                            <input asp-for="@Model.ApplicationUser.City" id="city" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row my-1">
+                                        <div class="col-3">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="col-9">
+                                            <input asp-for="@Model.ApplicationUser.State" id="state" type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -72,7 +80,7 @@
                                             <label>Postal Code</label>
                                         </div>
                                         <div class="col-9">
-                                            <input asp-for="@Model.ApplicationUser.PostalCode" id="postalCode"  type="text" class="form-control" />
+                                            <input asp-for="@Model.ApplicationUser.PostalCode" id="postalCode" type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -162,35 +170,41 @@
 
 
     <script>
-       
-            function validateInput() {
-                var address = document.getElementById("address").value;
-                var city = document.getElementById("city").value;
-                var phone = document.getElementById("txtPhone").value;
-                var postalCode = document.getElementById("postalCode").value;
-                
-                    if (address.toString().length == 0) {
-                        alert("Please enter address");
+
+        function validateInput() {
+            var address = document.getElementById("address").value;
+            var city = document.getElementById("city").value;
+            var phone = document.getElementById("txtPhone").value;
+            var state = document.getElementById("state").value;
+            var postalCode = document.getElementById("postalCode").value;
+
+            if (address.toString().length == 0) {
+                alert("Please enter street address");
+                return false;
+            }
+            else {
+                if (city.toString().length == 0) {
+                    alert("Please enter city");
+                    return false;
+                }
+                else {
+                    if (state.toString().length == 0) {
+                        alert("Please enter state");
                         return false;
                     }
                     else {
-                        if (city.toString().length == 0) {
-                            alert("Please enter delivery name");
+                        if (phone.toString().length == 0) {
+                            alert("Please enter a phone number");
                             return false;
                         }
                         else {
-                            if (phone.toString().length == 0) {
-                                alert("Please enter a phone number");
+                            if (postalCode.toString().length == 0) {
+                                alert("Please enter a postal code");
                                 return false;
                             }
-                             else {
-                                if (postalCode.toString().length == 0) {
-                                    alert("Please enter a postal code");
-                                    return false;
-                                }
-                                else {
-                                    return true;
-                                }
+                            else {
+                                return true;
+                            }
                         }
     </script>
 }

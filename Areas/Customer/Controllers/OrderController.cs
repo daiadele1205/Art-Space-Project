@@ -94,10 +94,11 @@ namespace Art.Areas.Customer.Controllers
         [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> ManageOrder(int productPage = 1)
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            List<OrderDetailsViewModel> orderDetailsVM = new List<OrderDetailsViewModel>();
 
-            ApplicationUser orderDetailsVM = new ApplicationUser>();
-
-            List<OrderHeader> OrderHeaderList = await _db.OrderHeader.Where(o => o.Status == SD.StatusSubmitted || o.Status == SD.StatusInProcess).OrderByDescending(u => u.DeliveryTime).ToListAsync();
+            List<OrderHeader> OrderHeaderList = await _db.OrderHeader.Where(o => o.Status == SD.StatusSubmitted || o.Status == SD.StatusInProcess).OrderByDescending(u => u.DeliveryTime).Include(o => o.ApplicationUser).Where(u => u.UserId == claim.Value).ToListAsync();
 
 
             foreach (OrderHeader item in OrderHeaderList)
@@ -106,7 +107,6 @@ namespace Art.Areas.Customer.Controllers
                 {
                     OrderHeader = item,
                     OrderDetails = await _db.OrderDetails.Where(o => o.OrderId == item.Id).ToListAsync()
-                    ApplicationUser = 
                 };
                 orderDetailsVM.Add(individual);
             }
