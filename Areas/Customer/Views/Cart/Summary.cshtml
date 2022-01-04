@@ -56,7 +56,7 @@
                                             <label>Street Address</label>
                                         </div>
                                         <div class="col-9">
-                                            <input asp-for="@Model.ApplicationUser.StreetAddress" id="address" type="text" class="form-control" />
+                                            <input asp-for="@Model.ApplicationUser.StreetAddress" id="tcaddress" type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -172,40 +172,31 @@
     <script>
 
         function validateInput() {
-            var address = document.getElementById("address").value;
-            var city = document.getElementById("city").value;
+            var time = document.getElementById("timepicker").value;
+            var dt = document.getElementById("datepicker").value;
+            var name = document.getElementById("txtName").value;
             var phone = document.getElementById("txtPhone").value;
-            var state = document.getElementById("state").value;
-            var postalCode = document.getElementById("postalCode").value;
 
-            if (address.toString().length == 0) {
-                alert("Please enter street address");
+            if (dt.toString().length == 0) {
+                alert("Please select pickup date")
+                return false;
+            }
+            else if (time.toString().length == 0) {
+                alert("Please select pickup time")
+                return false;
+            }
+            else if (name.toString().length == 0) {
+                alert("Please enter pickup name")
+                return false;
+            }
+            else if (phone.toString().length == 0) {
+                alert("Please enter a phone number")
                 return false;
             }
             else {
-                if (city.toString().length == 0) {
-                    alert("Please enter city");
-                    return false;
-                }
-                else {
-                    if (state.toString().length == 0) {
-                        alert("Please enter state");
-                        return false;
-                    }
-                    else {
-                        if (phone.toString().length == 0) {
-                            alert("Please enter a phone number");
-                            return false;
-                        }
-                        else {
-                            if (postalCode.toString().length == 0) {
-                                alert("Please enter a postal code");
-                                return false;
-                            }
-                            else {
-                                return true;
-                            }
-                        }
+                return true;
+            }
+        }
     </script>
 }
 

@@ -95,7 +95,7 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
             DetailCart.OrderHeader.OrderTotalOriginal = DetailCart.OrderHeader.OrderTotal;
             DetailCart.OrderHeader.DeliveryName = applicationUser.Name;
             DetailCart.OrderHeader.PhoneNumber = applicationUser.PhoneNumber;
-            DetailCart.OrderHeader.DeliveryTime = DateTime.Now;
+            
 
 
             return View(DetailCart);
