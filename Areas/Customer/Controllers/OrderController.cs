@@ -95,7 +95,7 @@ namespace Art.Areas.Customer.Controllers
         public async Task<IActionResult> ManageOrder(int productPage = 1)
         {
 
-            List<OrderDetailsViewModel> orderDetailsVM = new List<OrderDetailsViewModel>();
+            ApplicationUser orderDetailsVM = new ApplicationUser>();
 
             List<OrderHeader> OrderHeaderList = await _db.OrderHeader.Where(o => o.Status == SD.StatusSubmitted || o.Status == SD.StatusInProcess).OrderByDescending(u => u.DeliveryTime).ToListAsync();
 
@@ -106,6 +106,7 @@ namespace Art.Areas.Customer.Controllers
                 {
                     OrderHeader = item,
                     OrderDetails = await _db.OrderDetails.Where(o => o.OrderId == item.Id).ToListAsync()
+                    ApplicationUser = 
                 };
                 orderDetailsVM.Add(individual);
             }
