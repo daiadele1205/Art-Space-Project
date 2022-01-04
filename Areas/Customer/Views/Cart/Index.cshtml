@@ -60,22 +60,7 @@
                         }
 
                         <div class="row">
-                            @*<div class="col-12 col-md-5">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <input asp-for="@Model.OrderHeader.CouponCode" id="txtCouponCode" class="form-control" placeholder="coupon code..." />
-                                    </div>
-                                    <div class="col-5" style="margin-top:2px;">
-                                        <button type="submit" class="btn btn-sm form-control btn-outline-success" id="btnCoupon" asp-action="AddCoupon">
-                                            Apply
-                                        </button>
-                                        <button type="submit" class="btn btn-sm form-control btn-outline-danger" style="display:none" id="btnRemoveCoupon" asp-action="RemoveCoupon">
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>*@
-                        
+
                             <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
                                 <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between bg-light">
@@ -102,19 +87,3 @@
     }
 </form>
 
-@*@section Scripts{
-    <script>
-        $(function () {
-            var couponCode = document.getElementById("txtCouponCode").value;
-
-            if (couponCode.length > 0) {
-                document.getElementById('btnCoupon').style.display = 'none';
-                document.getElementById('btnRemoveCoupon').style.display = '';
-            }
-            else {
-                document.getElementById('btnCoupon').style.display = '';
-                document.getElementById('btnRemoveCoupon').style.display = 'none';
-            }
-        });
-    </script>
-}*@

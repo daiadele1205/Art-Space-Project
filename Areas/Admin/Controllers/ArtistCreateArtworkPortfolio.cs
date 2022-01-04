@@ -36,7 +36,7 @@ namespace Art.Areas.Admin.Controllers
 
 
         }
-
+        //GET : List of Existing Artwork Portfolios
         public async Task<IActionResult> Index()
         {
             var artworkPortfolios = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).ToListAsync();
@@ -52,6 +52,8 @@ namespace Art.Areas.Admin.Controllers
             return View(ArtworkPortfolioVM);
         }
 
+        
+        //POST - CREATE
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePOST()

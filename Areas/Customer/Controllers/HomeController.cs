@@ -24,7 +24,6 @@ namespace Art.Controllers
         {
             _db = db;
         }
-
         public async Task<IActionResult> FrontPage()
         {
             FrontPageViewModel FrontPageVM = new FrontPageViewModel()
@@ -46,7 +45,7 @@ namespace Art.Controllers
             return View(FrontPageVM);
         }
 
-
+        //VIEW - CURRENT ARTWORK LIST
         public async Task<IActionResult> Index()
         {
             IndexViewModel IndexVM = new IndexViewModel()
@@ -68,6 +67,7 @@ namespace Art.Controllers
             return View(IndexVM);
         }
 
+        //GET - PORTFOLIOS BY DISTINCT ARTIST
         public async Task<IActionResult> GetByArtist(string name)
         {
             {
@@ -93,6 +93,7 @@ namespace Art.Controllers
             }
         }
 
+        //GET - LIST OF ARTWORK BY DISTINCT TYPE
         public async Task<IActionResult> BrowseByType(int mediumId, int typeId)
         {
             IndexViewModel IndexVM = new IndexViewModel()
@@ -115,6 +116,7 @@ namespace Art.Controllers
             return View("BrowseByType", IndexVM);
         }
 
+        //GET - DETAILS
         public async Task<IActionResult> Details(int id)
         {
             var artworkPortfolioFromDb = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).Where(m => m.Id == id).FirstOrDefaultAsync();
@@ -128,7 +130,7 @@ namespace Art.Controllers
             return View(cartObj);
         }
 
-
+        //POST - UPDATE SHOPPING CART
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

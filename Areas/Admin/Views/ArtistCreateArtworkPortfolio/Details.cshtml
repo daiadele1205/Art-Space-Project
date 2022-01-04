@@ -6,7 +6,7 @@
 
 
 <br />
-<h2 class="text-info">Details Artwork Portfolio</h2>
+<h2 class="text-info">Artwork Portfolio Details </h2>
 <br />
 <div class="backgroundWhiteBorder row">
     <div class="col-8">
@@ -47,7 +47,6 @@
                 </div>
             </div>
 
-
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="ArtworkPortfolio.ArtworkType" class="custom-label"></label>
@@ -66,8 +65,6 @@
                 </div>
             </div>
 
-
-
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="ArtworkPortfolio.Price" class="custom-label"></label>
@@ -76,7 +73,6 @@
                     <input asp-for="ArtworkPortfolio.Price" class="form-control" />
                 </div>
             </div>
-
 
         </fieldset>
     </div>
@@ -94,13 +90,13 @@
 
 
     <script>
-            tinymce.init({
-                selector: 'textarea',
-                plugins: "lists",
-                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist",
-                menubar: 'file edit format',
-                readonly: 1
-            });</script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "lists",
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist",
+            menubar: 'file edit format',
+            readonly: 1
+        });</script>
     <script>tinymce.init({ selector: 'textarea' });</script>
 
 }
