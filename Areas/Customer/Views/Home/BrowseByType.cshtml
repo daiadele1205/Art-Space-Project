@@ -8,15 +8,7 @@
 
 <div class="backgroundWhite container">
 
-    <ul id="menu-filters" class="menu-filter-list list-inline text-center">
-
-        @foreach (var item in Model.ArtworkType)
-        {
-           
-            <li class="filter ml-1 mr-1" data-filter=".@item.Name.Replace(" ", string.Empty)">@item.Name</li>
-
-        }
-</ul>
+   
 
     @foreach (var type in Model.ArtworkType)
     {
@@ -24,6 +16,9 @@
     <partial name="_BrowseByTypePartial" model="@Model.ArtworkPortfolio.Where(u=>u.ArtworkType.Id.Equals(type.Id))" />
 </div>
     }
+</div>
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-success form-control">View All Works</a>
 </div>
 
 
@@ -36,20 +31,12 @@
 
     var posts = $('.post');
 
-    (function ($) {
-
-        $("#menu-filters li").click(function () {
-            $("#menu-filters li").removeClass('active btn btn-secondary');
-            $(this).addClass('active btn btn-secondary');
-
-            var selectedFilter = $(this).data("filter");
-
-            $(".menu-restaurant").fadeOut();
-
-            setTimeout(function () {
-                $(selectedFilter).slideDown();
-            }, 300);
-        });
+        function active_menu() {
+            var url = window.location.href;
+            $('.menu-filters a').filter(function () {
+                return this.href == url;
+            }).addClass('selected');
+        }
 
 
 

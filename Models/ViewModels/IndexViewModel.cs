@@ -11,5 +11,6 @@ namespace Art.Models.ViewModels
         public IEnumerable<Medium> Medium { get; set; }
         public IEnumerable<Coupon> Coupon { get; set; }
         public IEnumerable<ArtworkType> ArtworkType { get; set; }
+        public ArtworkType ArtworkTypes { get; set; }
     }
 }
