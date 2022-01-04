@@ -7,7 +7,7 @@
 }
 
 <br />
-<h2 class="text-info">Create Artwork Portfolio</h2>
+<h2 class="text-info">Create New Artwork Portfolio</h2>
 <br />
 
 <form method="post" asp-action="Create" enctype="multipart/form-data">
@@ -55,7 +55,6 @@
                 </div>
             </div>
 
-
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="ArtworkPortfolio.ArtworkTypeId" class="col-form-label"></label>
@@ -67,9 +66,6 @@
                 </div>
             </div>
 
-
-
-
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="ArtworkPortfolio.Size" class="col-form-label">Size (W x H x D) in inches</label>
@@ -78,8 +74,6 @@
                     <input asp-for="ArtworkPortfolio.Size" class="form-control" />
                 </div>
             </div>
-
-
 
             <div class="form-group row">
                 <div class="col-4">
@@ -90,8 +84,6 @@
                 </div>
                 <span asp-validation-for="ArtworkPortfolio.Price" class="text-danger"></span>
             </div>
-
-
 
             <div class="form-group row">
                 <div class="col-4">

@@ -48,11 +48,6 @@ namespace Art.Areas.Customer.Controllers
             return View();
         }
 
-        //public IActionResult GetOrderStatus(int Id)
-        //{
-        //    return PartialView("_OrderStatus", _db.OrderHeader.Where(m => m.Id == Id).FirstOrDefault().Status);
-
-        //}
 
         [Authorize]
         public async Task<IActionResult> OrderHistory(int productPage = 1)
@@ -96,14 +91,14 @@ namespace Art.Areas.Customer.Controllers
             return View(orderListVM);
         }
 
-        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
         [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> ManageOrder(int productPage = 1)
         {
-
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             List<OrderDetailsViewModel> orderDetailsVM = new List<OrderDetailsViewModel>();
 
-            List<OrderHeader> OrderHeaderList = await _db.OrderHeader.Where(o => o.Status == SD.StatusSubmitted || o.Status == SD.StatusInProcess).OrderByDescending(u => u.DeliveryTime).ToListAsync();
+            List<OrderHeader> OrderHeaderList = await _db.OrderHeader.Where(o => o.Status == SD.StatusSubmitted || o.Status == SD.StatusInProcess).OrderByDescending(u => u.DeliveryTime).Include(o => o.ApplicationUser).Where(u => u.UserId == claim.Value).ToListAsync();
 
 
             foreach (OrderHeader item in OrderHeaderList)
@@ -121,7 +116,6 @@ namespace Art.Areas.Customer.Controllers
             return View(orderDetailsVM.OrderBy(o => o.OrderHeader.DeliveryTime).ToList());
         }
 
-
         public async Task<IActionResult> GetOrderDetails(int Id)
         {
             OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel()
@@ -135,9 +129,6 @@ namespace Art.Areas.Customer.Controllers
         }
 
 
-
-
-        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
         [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> OrderPrepare(int OrderId)
         {
@@ -147,8 +138,6 @@ namespace Art.Areas.Customer.Controllers
             return RedirectToAction("ManageOrder", "Order");
         }
 
-
-        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
         [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> OrderReady(int OrderId)
         {
@@ -164,7 +153,6 @@ namespace Art.Areas.Customer.Controllers
         }
 
 
-        //[Authorize(Roles = SD.ArtistUser + "," + SD.ManagerUser)]
         [Authorize(Roles = SD.ManagerUser)]
         public async Task<IActionResult> OrderCancel(int OrderId)
         {
@@ -181,8 +169,6 @@ namespace Art.Areas.Customer.Controllers
         [Authorize]
         public async Task<IActionResult> OrderDelivery(int productPage = 1, string searchEmail = null, string searchPhone = null, string searchName = null)
         {
-            //var claimsIdentity = (ClaimsIdentity)User.Identity;
-            //var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             OrderListViewModel orderListVM = new OrderListViewModel()
             {
@@ -271,7 +257,6 @@ namespace Art.Areas.Customer.Controllers
             return View(orderListVM);
         }
 
-        //[Authorize(Roles = SD.WarehouseUser + "," + SD.ManagerUser)]
         [Authorize(Roles = SD.ManagerUser)]
         [HttpPost]
         [ActionName("OrderDelivery")]

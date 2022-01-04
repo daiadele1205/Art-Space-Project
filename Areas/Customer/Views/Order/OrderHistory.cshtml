@@ -12,9 +12,7 @@
         <div class="col-6">
             <h2 class="text-info"> Past Order List</h2>
         </div>
-        <div class="col-6 text-right">
-            <partial name="_CreateButtonPartial" />
-        </div>
+       
     </div>
     <br />
     <div>
@@ -30,9 +28,6 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(m => m.Orders[0].OrderHeader.ApplicationUser.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(m => m.Orders[0].OrderHeader.DeliveryTime)
                     </th>
                     <th>
                         @Html.DisplayNameFor(m => m.Orders[0].OrderHeader.OrderTotal)
@@ -56,9 +51,6 @@
                             @Html.DisplayFor(m => item.OrderHeader.ApplicationUser.Email)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => item.OrderHeader.DeliveryTime)
-                        </td>
-                        <td>
                             @Html.DisplayFor(m => item.OrderHeader.OrderTotal)
                         </td>
                         <td>
@@ -68,12 +60,7 @@
                             <button type="submit" class="btn btn-success anchorDetail" data-id="@item.OrderHeader.Id" data-toggle="modal">
                                 <i class="far fa-list-alt"></i> Details
                             </button>
-                            @*@if (item.OrderHeader.Status == SD.StatusSubmitted || item.OrderHeader.Status == SD.StatusInProcess || item.OrderHeader.Status == SD.StatusCompleted || item.OrderHeader.Status == SD.StatusReady)
-                            {
-                                <button type="button" class="btn btn-info btnOrderStatus" data-id="@item.OrderHeader.Id" data-toggle="modal">
-                                    <i class="far fa-clock"></i> Status
-                                </button>
-                            }*@
+                           
                         </td>
                     </tr>
                 }

@@ -61,18 +61,10 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
             }
             DetailCart.OrderHeader.OrderTotalOriginal = DetailCart.OrderHeader.OrderTotal;
 
-            //if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
-            //{
-            //    DetailCart.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
-            //    var couponFromDb = await _db.Coupon.Where(c => c.Name.ToLower() == DetailCart.OrderHeader.CouponCode.ToLower()).FirstOrDefaultAsync();
-            //    DetailCart.OrderHeader.OrderTotal = SD.DiscountedPrice(couponFromDb, DetailCart.OrderHeader.OrderTotalOriginal);
-            //}
-
 
             return View(DetailCart);
 
         }
-
 
 
         public async Task<IActionResult> Summary()
@@ -103,15 +95,7 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
             DetailCart.OrderHeader.OrderTotalOriginal = DetailCart.OrderHeader.OrderTotal;
             DetailCart.OrderHeader.DeliveryName = applicationUser.Name;
             DetailCart.OrderHeader.PhoneNumber = applicationUser.PhoneNumber;
-            DetailCart.OrderHeader.DeliveryTime = DateTime.Now;
-
-
-            //if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
-            //{
-            //    DetailCart.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
-            //    var couponFromDb = await _db.Coupon.Where(c => c.Name.ToLower() == DetailCart.OrderHeader.CouponCode.ToLower()).FirstOrDefaultAsync();
-            //    DetailCart.OrderHeader.OrderTotal = SD.DiscountedPrice(couponFromDb, DetailCart.OrderHeader.OrderTotalOriginal);
-            //}
+            
 
 
             return View(DetailCart);
@@ -209,29 +193,8 @@ namespace ArtSpace_Project.Areas.Customer.Controllers
             }
 
             await _db.SaveChangesAsync();
-            //return RedirectToAction("Index", "Home");
             return RedirectToAction("Confirm", "Order", new { id = DetailCart.OrderHeader.Id });
         }
-
-
-        //public IActionResult AddCoupon()
-        //{
-        //    if (DetailCart.OrderHeader.CouponCode == null)
-        //    {
-        //        DetailCart.OrderHeader.CouponCode = "";
-        //    }
-        //    HttpContext.Session.SetString(SD.ssCouponCode, DetailCart.OrderHeader.CouponCode);
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //public IActionResult RemoveCoupon()
-        //{
-
-        //    HttpContext.Session.SetString(SD.ssCouponCode, string.Empty);
-
-        //    return RedirectToAction(nameof(Index));
-        //}
 
 
         public async Task<IActionResult> Plus(int cartId)

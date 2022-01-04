@@ -22,6 +22,7 @@ namespace Art.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+
         public string Username { get; set; }
 
         [TempData]

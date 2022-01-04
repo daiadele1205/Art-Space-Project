@@ -14,8 +14,6 @@
             <input type="hidden" asp-for="ArtworkPortfolio.Id" />
             <fieldset disabled>
 
-
-
                 <div class="form-group row">
                     <div class="col-4">
                         <label asp-for="ArtworkPortfolio.Name" class="custom-label"></label>
@@ -24,7 +22,6 @@
                         <input asp-for="ArtworkPortfolio.Name" class="form-control" />
                     </div>
                 </div>
-
 
                 <div class="form-group row">
                     <div class="col-4">
@@ -53,7 +50,6 @@
                     </div>
                 </div>
 
-
                 <div class="form-group row">
                     <div class="col-4">
                         <label asp-for="ArtworkPortfolio.ArtworkType" class="custom-label"></label>
@@ -81,12 +77,8 @@
                     </div>
                 </div>
 
-
-
             </fieldset>
         </div>
-
-
 
 
         <div class="col-1"></div>
@@ -103,13 +95,13 @@
 
 @section Scripts{
     <script>
-            tinymce.init({
-                selector: 'textarea',
-                plugins: "lists",
-                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist",
-                menubar: 'file edit format',
-                readonly: 1
-            });</script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "lists",
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist",
+            menubar: 'file edit format',
+            readonly: 1
+        });</script>
     <script>tinymce.init({ selector: 'textarea' });</script>
 
 }

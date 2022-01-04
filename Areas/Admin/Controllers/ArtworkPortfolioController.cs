@@ -39,14 +39,13 @@ namespace Art.Areas.Admin.Controllers
 
 
         }
+        //GET : List of Existing Artwork Portfolios
 
         public async Task<IActionResult> Index()
         {
             var artworkPortfolios = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).ToListAsync();
             return View(artworkPortfolios);
         }
-
-
 
 
         //GET - CREATE
@@ -102,9 +101,6 @@ namespace Art.Areas.Admin.Controllers
         }
 
 
-
-
-
         //GET - EDIT
         public async Task<IActionResult> Edit(int? id)
         {
@@ -122,6 +118,8 @@ namespace Art.Areas.Admin.Controllers
             }
             return View(ArtworkPortfolioVM);
         }
+
+        //POST - EDIT
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
@@ -185,9 +183,6 @@ namespace Art.Areas.Admin.Controllers
         }
 
 
-
-
-
         //GET : Details ArtworkPortfolio
         public async Task<IActionResult> Details(int? id)
         {
@@ -205,9 +200,6 @@ namespace Art.Areas.Admin.Controllers
 
             return View(ArtworkPortfolioVM);
         }
-
-
-
 
 
 

@@ -134,8 +134,8 @@ namespace Art.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var artTypFromDb = await _db.ArtworkType.FindAsync(model.ArtworkType.Id);
-                    artTypFromDb.Name = model.ArtworkType.Name;
+                    var artTypeFromDb = await _db.ArtworkType.FindAsync(model.ArtworkType.Id);
+                    artTypeFromDb.Name = model.ArtworkType.Name;
 
                     await _db.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -148,7 +148,6 @@ namespace Art.Areas.Admin.Controllers
                 ArtworkTypeList = await _db.ArtworkType.OrderBy(p => p.Name).Select(p => p.Name).ToListAsync(),
                 StatusMessage = StatusMessage
             };
-            //modelVM.ArtworkType.Id = id;
             return View(modelVM);
         }
 
