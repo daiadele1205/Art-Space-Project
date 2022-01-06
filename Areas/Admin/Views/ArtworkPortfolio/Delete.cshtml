@@ -28,7 +28,9 @@
                         <label asp-for="ArtworkPortfolio.Description" class="custom-label"></label>
                     </div>
                     <div class="col-8">
-                        @Html.TextAreaFor(m => m.ArtworkPortfolio.Description)
+                        <div class="border p-2">
+                            @Html.Raw(Model.ArtworkPortfolio.Description)
+                        </div>
                     </div>
                 </div>
 
