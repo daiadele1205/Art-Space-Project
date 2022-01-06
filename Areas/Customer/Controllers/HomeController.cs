@@ -52,7 +52,6 @@ namespace Art.Controllers
             {
                 ArtworkPortfolio = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).ToListAsync(),
                 Medium = await _db.Medium.ToListAsync(),
-                Coupon = await _db.Coupon.Where(c => c.IsActive == true).ToListAsync()
             };
 
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -77,7 +76,6 @@ namespace Art.Controllers
                             .Where(x => x.Artist == name)
                             .Include(m => m.ArtworkType).ToListAsync(),
                     Medium = await _db.Medium.ToListAsync(),
-                    Coupon = await _db.Coupon.Where(c => c.IsActive == true).ToListAsync()
                 };
 
                 var claimsIdentity = (ClaimsIdentity)User.Identity;

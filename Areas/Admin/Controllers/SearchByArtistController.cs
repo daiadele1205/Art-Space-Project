@@ -24,6 +24,7 @@ namespace Art.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var artists = await _db.ArtworkPortfolio.Select(x => x.Artist).ToArrayAsync();
+            
 
             return View(artists.Distinct().ToList());
         }
