@@ -1,4 +1,5 @@
 ﻿using Art.Data;
+using Art.Models;
 using Art.Models.ViewModels;
 using Art.Utility;
 using Microsoft.AspNetCore.Authorization;
@@ -118,7 +119,129 @@ namespace Art.Areas.Admin.Controllers
             return View(ArtworkPortfolioVM);
         }
 
+        //GET - EDIT
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            ArtworkPortfolioVM.ArtworkPortfolio = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).SingleOrDefaultAsync(m => m.Id == id);
+            ArtworkPortfolioVM.ArtworkType = await _db.ArtworkType.Where(s => s.MediumId == ArtworkPortfolioVM.ArtworkPortfolio.MediumId).ToListAsync();
+
+            if (ArtworkPortfolioVM.ArtworkPortfolio == null)
+            {
+                return NotFound();
+            }
+            return View(ArtworkPortfolioVM);
+        }
+
+        //POST - EDIT
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPOST(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ArtworkPortfolioVM.ArtworkPortfolio.ArtworkTypeId = Convert.ToInt32(Request.Form["ArtworkTypeId"].ToString());
+
+            if (!ModelState.IsValid)
+            {
+                ArtworkPortfolioVM.ArtworkType = await _db.ArtworkType.Where(s => s.MediumId == ArtworkPortfolioVM.ArtworkPortfolio.MediumId).ToListAsync();
+                return View(ArtworkPortfolioVM);
+            }
+
+            //Work on the image saving section
+
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            var artworkPortfolioFromDb = await _db.ArtworkPortfolio.FindAsync(ArtworkPortfolioVM.ArtworkPortfolio.Id);
+
+            if (files.Count > 0)
+            {
+                //New Image has been uploaded
+                var uploads = Path.Combine(webRootPath, "images");
+                var extension_new = Path.GetExtension(files[0].FileName);
+
+                //Delete the original file
+                var imagePath = Path.Combine(webRootPath, artworkPortfolioFromDb.Image.TrimStart('\\'));
+
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+
+                //we will upload the new file
+                using (var filesStream = new FileStream(Path.Combine(uploads, ArtworkPortfolioVM.ArtworkPortfolio.Id + extension_new), FileMode.Create))
+                {
+                    files[0].CopyTo(filesStream);
+                }
+                artworkPortfolioFromDb.Image = @"\images\" + ArtworkPortfolioVM.ArtworkPortfolio.Id + extension_new;
+            }
+
+            artworkPortfolioFromDb.Name = ArtworkPortfolioVM.ArtworkPortfolio.Name;
+            artworkPortfolioFromDb.Description = ArtworkPortfolioVM.ArtworkPortfolio.Description;
+            artworkPortfolioFromDb.Artist = ArtworkPortfolioVM.ArtworkPortfolio.Artist;
+
+            artworkPortfolioFromDb.MediumId = ArtworkPortfolioVM.ArtworkPortfolio.MediumId;
+            artworkPortfolioFromDb.ArtworkTypeId = ArtworkPortfolioVM.ArtworkPortfolio.ArtworkTypeId;
+
+
+            artworkPortfolioFromDb.Size = ArtworkPortfolioVM.ArtworkPortfolio.Size;
+            artworkPortfolioFromDb.Price = ArtworkPortfolioVM.ArtworkPortfolio.Price;
+
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        //GET : Delete ArtworkPortfolio
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ArtworkPortfolioVM.ArtworkPortfolio = await _db.ArtworkPortfolio.Include(m => m.Medium).Include(m => m.ArtworkType).SingleOrDefaultAsync(m => m.Id == id);
+
+            if (ArtworkPortfolioVM.ArtworkPortfolio == null)
+            {
+                return NotFound();
+            }
+
+            return View(ArtworkPortfolioVM);
+        }
+
+        //POST Delete ArtworkPortfolio
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            ArtworkPortfolio artworkPortfolio = await _db.ArtworkPortfolio.FindAsync(id);
+
+            if (artworkPortfolio != null)
+            {
+                var imagePath = Path.Combine(webRootPath, artworkPortfolio.Image.TrimStart('\\'));
+
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                _db.ArtworkPortfolio.Remove(artworkPortfolio);
+                await _db.SaveChangesAsync();
+
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }

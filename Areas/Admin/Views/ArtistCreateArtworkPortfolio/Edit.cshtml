@@ -2,18 +2,19 @@
 @using Art.Extensions
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br />
-<h2 class="text-info">Create Your Artwork Portfolio</h2>
+<h2 class="text-info">Edit Your Artwork Portfolio</h2>
 <br />
 
-<form method="post" asp-action="Create" enctype="multipart/form-data">
-    <div class="border backgroundWhite">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <div class="border backgroundWhite row">
+        <input type="hidden" asp-for="ArtworkPortfolio.Id" />
 
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="col-8">
             <div class="form-group row">
@@ -61,16 +62,14 @@
                     <label asp-for="ArtworkPortfolio.ArtworkTypeId" class="col-form-label"></label>
                 </div>
                 <div class="col-8">
-
                     <select asp-for="@Model.ArtworkPortfolio.ArtworkTypeId" name="ArtworkTypeId" id="ArtworkTypeId" asp-items="@(new SelectList(string.Empty,"Id","Name"))" class="form-control"></select>
-
                 </div>
             </div>
 
 
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="ArtworkPortfolio.Size" class="col-form-label">Size (W x H) in inches</label>
+                    <label asp-for="ArtworkPortfolio.Size" class="col-form-label">Size (H x W) in inches</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="ArtworkPortfolio.Size" class="form-control" />
@@ -100,23 +99,22 @@
                 </div>
             </div>
 
-        </div>
 
+
+        </div>
         <div class="col-3 offset-1">
             <img src="@Model.ArtworkPortfolio.Image" width="100%" style="border-radius:5px;border: 1px solid #bbb9b9;" />
         </div>
 
         <div class="col-8">
             <div class="col-8 offset-4">
-                <partial name="_CreateAndBackToListButton" model="Model.ArtworkPortfolio.Id" />
+                <partial name="_EditButtonPartial" model="Model.ArtworkPortfolio.Id" />
             </div>
         </div>
 
 
     </div>
 </form>
-
-
 
 @section Scripts{
     <script src="https://cdn.tiny.cloud/1/ojtd5uksx0g2uqtv2xoa9vdr78gdhutn4rj5dqm45woap8yw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -129,6 +127,7 @@
         });
     </script>
 
+
     <script type="text/javascript">
         $(document).ready(function () {
             getArtworkType();
@@ -138,8 +137,8 @@
         });
         function getArtworkType() {
             var url = '@Url.Content("~/")' + "Admin/ArtworkType/GetArtworkType";
-            var ddlsource = '#MediumId';
-            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+            var ddlsoruce = '#MediumId';
+            $.getJSON(url, { id: $(ddlsoruce).val() }, function (data) {
                 var items = '';
                 $('#ArtworkTypeId').empty();
                 $.each(data, function (i, ArtworkType) {

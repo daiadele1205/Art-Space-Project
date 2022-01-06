@@ -11,6 +11,7 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -26,6 +27,21 @@
                             }
                         }
                     </div>
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/Customer/Home/Details/41">
+                <partial name="_FeaturedWorksCarousel" model="@Model.ArtworkPortfolio.Where(u=>u.Id.Equals(41))" />
+                <div class="carousel-caption d-none d-md-block">
+                    @foreach (var work in Model.ArtworkPortfolio)
+                    {
+                        @if (work.Id == 41)
+                        {
+                            <h1>@work.Name</h1>
+
+                        }
+                    }
+                </div>
             </a>
         </div>
         <div class="carousel-item">
